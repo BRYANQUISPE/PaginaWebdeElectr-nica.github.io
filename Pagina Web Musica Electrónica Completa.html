@@ -1,0 +1,390 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web con Carrusel y Efectos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* General */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, #1e90ff, #ff7f50);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Barra de navegación */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #1e90ff;
+    }
+
+    /* Carrusel */
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 300px;
+      margin: 20px 0;
+    }
+
+    .carousel img {
+      width: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel img:not(:first-child) {
+      display: none;
+    }
+
+    /* Redes sociales */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .social-icons a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 24px;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.3);
+      color: #ff7f50;
+    }
+
+    /* Secciones */
+    section {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .section-1 {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .section-2 {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .section-3 {
+      background-color: rgba(255, 165, 0, 0.5);
+    }
+
+    .section-4 {
+      background-color: rgba(0, 128, 0, 0.5);
+    }
+
+
+    /* Efectos adicionales */
+    h1, h2 {
+  font-family: 'Poppins', sans-serif; /* Fuente moderna */
+  font-size: 2.5rem; /* Ajusta el tamaño */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+  margin-bottom: 20px;
+  color: #fff;
+  letter-spacing: 1.5px; /* Espaciado entre letras */
+  animation: fadeIn 2s ease-in-out;
+}
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    p {
+  font-family: 'Georgia', sans-serif; /* Fuente secundaria */
+  font-size: 1.0rem; /* Ajusta el tamaño */
+  margin-left: -20px ;
+  margin-right: -20px ;
+  line-height: 1.5; /* Altura de línea */
+  text-align: justify; /* Alineación */
+  color: rgba(255, 255, 255, 0.85); /* Color opaco */
+  margin-bottom: 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    #mi-imagen{
+        transition: transform 0.3s ease;
+    }
+    #mi-imagen:hover{
+        transform: rotate(15deg);
+    }
+    
+    .calculator {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background-image:url(https://i.pinimg.com/236x/8e/f9/c7/8ef9c7c224e8f6baff0e9e1b032ae22b.jpg) ;
+      width: 350px;
+      margin: 50px auto;
+    }
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 24px;
+      text-align: right;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+    .button {
+      width: 70px;
+      height: 70px;
+      font-size: 24px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #e0e0e0;
+      border: none;
+      border-radius: 5px;
+    }
+    .button:active {
+      background-color: #ccc;
+    }
+    .row {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Mi Sitio</div>
+    <ul>
+      <li><a href="#section-1">Inicio</a></li>
+      <li><a href="#section-2">Nueva Música</a></li>
+      <li><a href="#section-3">Galería</a></li>
+      <li><a href="#section-4">Hits</a></li>
+    </ul>
+  </nav>
+
+  <div class="carousel">
+    <img src="https://yt3.googleusercontent.com/AeDgtFdN1GfSkCNN2PL1sOlshziIB25kCBR3QIZnMWXLD2WV2YuwEYzMdiaTGJrHrZQ3r9U4dQ=s900-c-k-c0x00ffffff-no-rj" alt="Imagen 1">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxCV116ef5lxjh1PRgaaEc05I6j6d7K6lmHw&s" alt="Imagen 2">
+    <img src="https://es.concerty.com/img/festival/logo/817.jpg" alt="Imagen 3">
+    <img src="https://i.scdn.co/image/ab6761610000e5eb45febdf735530369e5e753ec" alt="Imagen 4">
+    <img src="https://yt3.googleusercontent.com/ytc/AIdro_lAEdCN-f5liiRVIRudaJzXbIsroI3oe-4QoemUi6t8RqI=s900-c-k-c0x00ffffff-no-rj" alt="Imagen 5">
+  </div>
+
+  <div class="social-icons">
+    <a href="https://m.facebook.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/220px-2021_Facebook_icon.svg.png"width="50" height="50"></img></a>
+    <a href="https://x.com/?lang=es"><img src="https://cdn.icon-icons.com/icons2/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png"width ="70" height="50"></img></a>
+    <a href="https://www.instagram.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg"width="50" height="50"></img></a>
+  </div>
+
+  <section id="section-1" class="section-1">
+    <h2>Bienvenidos</h2>
+    <p> Explora la música electrónica desde sus orígenes.</p>
+
+  <iframe width="300" height="315" src="https://www.youtube.com/embed/OmIfJNe19Lw?si=tadMRpifh2etnvo3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p> 
+La historia detrás de la música electrónica
+Mira qué hay para contar al respecto
+</p>
+<img src="https://buentrack.com/wp-content/uploads/2023/05/larryl.jpg" width ="300" height="350" > </img>
+
+<p>
+La historia detrás de la música electrónica
+La música electrónica ha continuado evolucionando y ramificándose en una gran variedad de subgéneros. (Freepik)
+La música electrónica es un género musical que se originó en la década de 1950, aunque sus raíces se remontan a los experimentos de los compositores de música clásica del siglo XX, como Edgar Varèse y John Cage, que utilizaron grabaciones de sonidos y dispositivos electrónicos para crear nuevas formas de música.
+
+En la década de 1960, el músico alemán Karlheinz Stockhausen comenzó a trabajar con sintetizadores electrónicos y produjo obras como "Kontakte" y "Telemusik", que son consideradas como algunos de los primeros ejemplos de música electrónica experimental.</p>
+
+<img src="https://es-academic.com/pictures/eswiki/74/Josef_Tal_at_the_Electronic_Music_Studio.jpg" width="300" height="300"></img>
+
+<p>
+Sin embargo, fue en la década de 1970 cuando la música electrónica comenzó a tener un impacto significativo en la cultura popular. Los sintetizadores analógicos se volvieron más accesibles y los músicos comenzaron a utilizarlos para crear nuevas formas de música. En Europa, el krautrock y el movimiento de la música electrónica alemana, con artistas como Kraftwerk, Tangerine Dream y Klaus Schulze, se convirtieron en muy influyentes. </p>
+
+<img src="https://carlosrioszuniga.com/wp-content/uploads/2023/10/Historia-de-los-Djs.jpg" width="300" height="300"></img>
+
+  </section>
+
+  <section id="section-2" class="section-2">
+    <h2>Nueva Música</h2>
+    <p>Descubre lo que podemos ofrecerte.</p>
+<img src="https://geo-media.beatport.com/image_size/1400x1400/f053dd78-6be6-4131-a547-a15e8bb78fb9.jpg" width ="300" height="350" > </img>
+
+<iframe src="https://embed.beatport.com/?id=19560445&type=track" width="100%" height="162" frameborder="0" scrolling="no" style="max-width:600px;"></iframe>
+
+
+
+  </section>
+
+  <section id="section-3" class="section-3">
+    <h2>Galería</h2>
+    <p>Imágenes y videos destacados.</p>
+<table>
+<tr>
+<td>
+    
+    <a href="https://i1.sndcdn.com/artworks-000420911217-3xcl7c-t500x500.jpg"download>
+<img src="https://i1.sndcdn.com/artworks-000420911217-3xcl7c-t500x500.jpg"width="300" height="300"></img>
+</a>
+<p>puedes descargar presionando la imagen</p>
+</td>
+</tr>
+<tr>
+    <td>
+        <a href="https://img.freepik.com/fotos-premium/reproductor-dj-mezclando-audio-musica-electronica-fiesta-club-nocturno-creado-tecnologia-ia-generativa_67092-4331.jpg?semt=ais_hybrid"download>
+            <img src="https://img.freepik.com/fotos-premium/reproductor-dj-mezclando-audio-musica-electronica-fiesta-club-nocturno-creado-tecnologia-ia-generativa_67092-4331.jpg?semt=ais_hybrid"width="300" height="300"></img>
+        </a>
+    </td>
+</tr>
+<tr>
+    <td>
+        <a href="https://i.pinimg.com/736x/28/be/2f/28be2f906e57b6307d64bfe598265b36.jpg"download>
+            <img src="https://i.pinimg.com/736x/28/be/2f/28be2f906e57b6307d64bfe598265b36.jpg"width="300" height="300"></img>
+        </a>
+    </td>
+</tr>
+<tr>
+    <td>
+        <a href="https://i.pinimg.com/736x/7c/3b/ef/7c3befd62713e1ebd37b53e3b975a8b6.jpg"download>
+            <img src="https://i.pinimg.com/736x/7c/3b/ef/7c3befd62713e1ebd37b53e3b975a8b6.jpg"width="300" height="300"></img>
+        </a>
+    </td>
+</tr>
+</table>
+  </section>
+
+  <section id="section-4" class="section-4">
+    <h2>Hits</h2>
+    <p>Las canciones más escuchadas de toda la época</p>
+    <table>
+      <tr>
+      <td>
+           <p>Pon play para visualizar los videos. </p>
+        <img src="https://i.discogs.com/VCxVIJLrxABodmfMU-ljJgEAeDy0LpUHq_Bi94bmS8g/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwNTA4/MTA2LTE2MzM2MzMz/MjQtNTEzMi5qcGVn.jpeg" width="300" height="200"id="mi-imagen"></img>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/96069548?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:300;height:300;" title="Dimitri Vegas, Martin Garrix, Like Mike - Tremor"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script
+        </td>
+      </tr>
+    </table>
+  </section>
+  <h1>Calculadora</h1>
+
+<!-- Calculadora -->
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="row">
+        <button class="button" onclick="clearDisplay()">C</button>
+        <button class="button" onclick="appendToDisplay('/')">/</button>
+        <button class="button" onclick="appendToDisplay('*')">*</button>
+        <button class="button" onclick="deleteLast()">←</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToDisplay('7')">7</button>
+        <button class="button" onclick="appendToDisplay('8')">8</button>
+        <button class="button" onclick="appendToDisplay('9')">9</button>
+        <button class="button" onclick="appendToDisplay('-')">-</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToDisplay('4')">4</button>
+        <button class="button" onclick="appendToDisplay('5')">5</button>
+        <button class="button" onclick="appendToDisplay('6')">6</button>
+        <button class="button" onclick="appendToDisplay('+')">+</button>
+    </div>
+    <div class="row">
+        <button class="button" onclick="appendToDisplay('1')">1</button>
+        <button class="button" onclick="appendToDisplay('2')">2</button>
+        <button class="button" onclick="appendToDisplay('3')">3</button>
+        <button class="button" onclick="calculateResult()">=</button>
+    </div>
+    <div class="row">
+        <button class="button" style="width: 145px;" onclick="appendToDisplay('0')">0</button>
+        <button class="button" onclick="appendToDisplay('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    // Carrusel
+    let index = 0;
+    const images = document.querySelectorAll(".carousel img");
+
+    setInterval(() => {
+      images[index].style.display = "none";
+      index = (index + 1) % images.length;
+      images[index].style.display = "block";
+    }, 5000);
+
+    // Calculadora
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function deleteLast() {
+        var display = document.getElementById('display').value;
+        document.getElementById('display').value = display.slice(0, -1);
+    }
+
+    function calculateResult() {
+        var display = document.getElementById('display').value;
+        try {
+            document.getElementById('display').value = eval(display);
+        } catch (error) {
+            document.getElementById('display').value = 'Error';
+        }
+    }
+    </script>
+</body>
+</html>
